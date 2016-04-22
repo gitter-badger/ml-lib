@@ -1,0 +1,23 @@
+sudo: false
+notifications:
+  email: false
+language: cpp
+compiler:
+  - gcc
+  - clang
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+before_script:
+  - mkdir ./build
+  - cd ./build
+script:
+  - cmake ..
+  - make -j5
+  - cd ./test/
+  - ./test_ml-lib
+notifications:
+  email: dolotov.evgeniy@gmail.com
