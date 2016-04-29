@@ -11,7 +11,14 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+install:
+  - wget https://codecov.io/bash -O $HOME/codecov; chmod +x $HOME/codecov
 before_script:
+  - coverage=OFF
+  - if [ "$CXX" = "g++" ]; then
+        export CXX="g++-4.8" CC="gcc-4.8";
+        coverage=ON;
+    fi
   - mkdir ./build
   - cd ./build
 script:
@@ -20,6 +27,11 @@ script:
   - cd ./test/
   - ./test_ml-lib
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  # Push coverage info on codecov.io
+  - if [ "${coverage}" = "ON" ]; then
+        $HOME/codecov
+             -p ../build
+             -x /usr/bin/gcov-4.8;
+    fi
 notifications:
   email: dolotov.evgeniy@gmail.com
