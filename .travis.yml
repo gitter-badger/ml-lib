@@ -24,7 +24,7 @@ before_script:
 script:
   - cmake ..
   - make -j5
-  - cd ./test/
+  - cd ./bin/
   - ./test_ml-lib
   - cd ..
 after_success:
