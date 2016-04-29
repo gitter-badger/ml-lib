@@ -19,5 +19,7 @@ script:
   - make -j5
   - cd ./test/
   - ./test_ml-lib
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 notifications:
   email: dolotov.evgeniy@gmail.com
