@@ -30,9 +30,7 @@ script:
 after_success:
   # Push coverage info on codecov.io
   - if [ "${coverage}" = "ON" ]; then
-        $HOME/codecov
-             -p /home/travis/build/DolotovEvgeniy/ml-lib/build
-             -x /usr/bin/gcov-4.8;
+       - bash <(curl -s https://codecov.io/bash)
     fi
 notifications:
   email: dolotov.evgeniy@gmail.com
