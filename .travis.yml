@@ -24,14 +24,14 @@ before_script:
 script:
   - cmake ..
   - make -j5
-  - cd ./test/
+  - cd ./bin/
   - ./test_ml-lib
   - cd ..
 after_success:
   # Push coverage info on codecov.io
   - if [ "${coverage}" = "ON" ]; then
         $HOME/codecov
-             -p ../build
+             -p ..
              -x /usr/bin/gcov-4.8;
     fi
 notifications:
