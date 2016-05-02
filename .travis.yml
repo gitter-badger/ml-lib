@@ -22,13 +22,13 @@ before_script:
   - mkdir ./build
   - cd ./build
 script:
-  - cmake ..
+  - cmake cmake -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ..
   - make -j5
   - cd ./bin/
   - ./test_ml-lib
-  - cd ..
+  - cd ../..
 after_success:
-  # Push coverage info on codecov.io
+ # Push coverage info on codecov.io
   - if [ "${coverage}" = "ON" ]; then
         $HOME/codecov
              -p ..
