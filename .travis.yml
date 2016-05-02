@@ -28,9 +28,11 @@ script:
   - ./test_ml-lib
   - cd ../..
 after_success:
-  # Push coverage info on codecov.io
+ # Push coverage info on codecov.io
   - if [ "${coverage}" = "ON" ]; then
-       - bash <(curl -s https://codecov.io/bash)
+        $HOME/codecov
+             -p ..
+             -x /usr/bin/gcov-4.8;
     fi
 notifications:
   email: dolotov.evgeniy@gmail.com
